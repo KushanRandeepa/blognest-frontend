@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support BlogNest</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #020617, #041e3d, #083f63, #0a6e9d, #0b1220);
+      background-attachment: fixed;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Ocean wave animation */
+    @keyframes waveMotion {
+      0% {
+        background-position: 0 0;
+      }
+
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 200px;
+      background: url('./images/Gemini_Generated_Image_eudy9veudy9veudy.png') repeat-x;
+      background-size: contain;
+      animation: waveMotion 40s linear infinite;
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 70px;
+      background: rgba(8, 21, 40, 0.8);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 12px rgba(0, 255, 255, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #00ffff;
+      text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: rgba(0, 255, 255, 0.15);
+      color: #00ffff;
+      box-shadow: 0 0 12px #00ffff;
+    }
+
+    /* Payment Section */
+    .payment-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.6), rgba(4, 30, 61, 0.6));
+      min-height: 90vh;
+      position: relative;
+    }
+
+    .payment-section h1 {
+      font-size: 3rem;
+      background: linear-gradient(90deg, #00ffff, #4f9fff, #00ffaa);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+      margin-bottom: 20px;
+    }
+
+    .payment-section p {
+      max-width: 700px;
+      font-size: 1.2rem;
+      color: #d6f3ff;
+      margin-bottom: 50px;
+      line-height: 1.6;
+    }
+
+    .donation-options {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .donation-btn {
+      background: linear-gradient(135deg, #00ffff, #4f9fff, #009dff);
+      border: none;
+      color: #fff;
+      padding: 18px 35px;
+      border-radius: 15px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.4s;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    }
+
+    .donation-btn:hover {
+      transform: translateY(-5px);
+      background: linear-gradient(135deg, #00ffaa, #4f9fff, #00ffff);
+      box-shadow: 0 0 25px #00ffff, 0 0 45px #4f9fff;
+    }
+
+    .custom-amount {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .custom-amount input {
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      width: 160px;
+      text-align: center;
+      font-size: 1rem;
+      margin-right: 10px;
+    }
+
+    .custom-amount button {
+      background: linear-gradient(45deg, #00ffff, #4f9fff, #00ffaa);
+      color: #081528;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .custom-amount button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffff, 0 0 30px #4f9fff;
+    }
+
+    .thank-you {
+      margin-top: 60px;
+      font-size: 1.2rem;
+      color: #b8eaff;
+      background: rgba(0, 255, 255, 0.1);
+      padding: 15px 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    }
+
+    footer {
+      background: #081528;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 0.9rem;
+      color: #8cd8ff;
+      border-top: 1px solid rgba(0, 255, 255, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">BlogNest</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="entertainment.html">Entertainment</a></li>
+        <li><a href="sports.html">Sports</a></li>
+        <li><a href="aitech.html">AI & Tech</a></li>
+
+      </ul>
+    </nav>
+  </header>
+
+  <section class="payment-section">
+    <h1>Support BlogNest 🌊</h1>
+    <p>Your support helps us grow and continue curating amazing blogs about education, entertainment, AI, and more. Together, we make knowledge flow like the ocean.</p>
+
+    <div class="donation-options">
+      <button class="donation-btn">$5</button>
+      <button class="donation-btn">$10</button>
+      <button class="donation-btn">$20</button>
+      <button class="donation-btn">$50</button>
+    </div>
+
+    <div class="custom-amount">
+      <input type="number" placeholder="Custom amount" />
+      <button>Donate</button>
+    </div>
+
+    <div class="thank-you">
+      <p>💙 Thank you for helping BlogNest make waves of inspiration! 💙</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 BlogNest | Curating Knowledge, Creativity & Tech</p>
+  </footer>
+</body>
+
+</html>

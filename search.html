@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search & Discover - BlogNest</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ===== Reset ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #fafafac1;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ===== Navbar ===== */
+    header {
+      background: #e9e3dc;
+      padding: 15px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #3a2f2a;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #3a2f2a;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #8b5e34;
+    }
+
+    /* ===== Search Section ===== */
+    .search-section {
+      text-align: center;
+      padding: 100px 20px 70px;
+      background: linear-gradient(135deg, #f4ecf9, #fdf2f8, #e8f0ff);
+      position: relative;
+    }
+
+    .search-section h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      color: #2c2c2c;
+    }
+
+    .search-section p {
+      font-size: 1.2rem;
+      color: #5a4a42;
+      margin-bottom: 40px;
+    }
+
+    .search-box {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-box input {
+      width: 100%;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      padding: 10px;
+    }
+
+    /* ===== Filters Section ===== */
+    .filters-section {
+      padding: 25px 50px;
+      background: #f8fbff;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+    }
+
+    .filters {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .filters select {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 0.95rem;
+      background: white;
+      transition: all 0.3s ease;
+    }
+
+    .filters select:hover {
+      border-color: #8b5e34;
+    }
+
+    /* ===== Results Section ===== */
+    .results-section {
+      padding: 50px;
+    }
+
+    .results-section h2 {
+      font-size: 1.8rem;
+      color: #2c2c2c;
+      margin-bottom: 20px;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      background: #e9e3dc;
+      padding: 20px;
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #3a2f2a;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <!-- Logo + Site Name -->
+    <div class="logo-container">
+      <img src="./images/Untitled design (1).png" alt="BlogNest Logo" class="logo-img">
+      <span class="logo">BlogNest</span>
+    </div>
+
+    <!-- Navigation -->
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="entertainment.html">Entertainment</a></li>
+      <li><a href="sports.html">Sports</a></li>
+      <li><a href="aitech.html">AI & Tech</a></li>
+      <li><a href="search.html" class="search-link">🔍</a></li>
+    </ul>
+  </header>
+
+  <!-- ===== Search & Discover Section ===== -->
+  <section class="search-section">
+    <h1>SEARCH & DISCOVER</h1>
+    <p>Find exactly what you're looking for across our collection of articles</p>
+
+    <!-- Search Bar -->
+    <div class="search-box">
+      <input type="text" placeholder="Search articles, topics, authors...">
+    </div>
+  </section>
+
+  <!-- ===== Filters Section ===== -->
+  <section class="filters-section">
+    <div class="filters">
+      <span>🔍 Filters:</span>
+
+      <label>Category:</label>
+      <select>
+        <option>All Categories</option>
+        <option>AI & Tech</option>
+        <option>Education</option>
+        <option>Entertainment</option>
+        <option>Sports</option>
+      </select>
+
+      <label>Sort by:</label>
+      <select>
+        <option>Newest First</option>
+        <option>Oldest First</option>
+        <option>Most Popular</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- ===== Search Results Placeholder ===== -->
+  <section class="results-section">
+    <h2>SEARCH RESULTS</h2>
+    <p>Articles will appear here...</p>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>&copy; 2025 BlogNest | All rights reserved.</p>
+  </footer>
+
+</body>
+
+</html>

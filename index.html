@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlogNest - Home</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    html,
+    body {
+      height: 100%;
+      /* make body fill full screen height */
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: url("./images/Phoenix_09_a_serene_background_for_a_blogging_site_with_a_mode_1.jpg") no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed
+    }
+
+    /* Dark overlay behind everything */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      /* darker overlay */
+      z-index: -1;
+    }
+
+    h1,
+    p {
+      text-align: center;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    button {
+      display: block;
+      margin: 20px auto;
+      background: linear-gradient(135deg, #b8860b, #d4a017);
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #c49a24, #f0b63a);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <!-- Logo + Site Name -->
+    <div class="logo-container">
+      <img src="./images/Untitled design (1).png" alt="BlogNest Logo" class="logo-img">
+      <span class="logo">BlogNest</span>
+    </div>
+
+    <!-- Navigation -->
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="entertainment.html">Entertainment</a></li>
+      <li><a href="sports.html">Sports</a></li>
+      <li><a href="aitech.html">AI & Tech</a></li>
+      <li><a href="search.html" class="search-link">🔍</a></li>
+      <li><a href="login.html">Login </a></li>
+    </ul>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1>Welcome to BlogNest</h1>
+    <p class="intro">
+      Explore curated content across education, entertainment, AI technology, and sports.
+      Join thousands of curious minds discovering insights that shape tomorrow.
+    </p>
+    <a href="about.html" class="learn-btn">Learn More</a>
+    <h2>
+  </div>
+
+
+</body>
+
+</html>

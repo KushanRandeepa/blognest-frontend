@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlogNest | Sign Up</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif
+    }
+
+    body {
+      background: linear-gradient(to right, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh
+    }
+
+    .signup-container {
+      background: #fff;
+      padding: 32px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .15);
+    }
+
+    .signup-container h1 {
+      margin-bottom: 14px;
+      color: #333
+    }
+
+    .signup-container input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px
+    }
+
+    .signup-container button {
+      width: 100%;
+      padding: 12px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer
+    }
+
+    .signup-container p {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #555
+    }
+
+    .signup-container a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: bold
+    }
+  </style>
+</head>
+
+<body>
+  <div class="signup-container">
+    <h1>Create an account</h1>
+    <form id="signupForm" method="post" action="">
+      <input name="uname" id="suUser" type="text" placeholder="Username" required>
+      <input name="email" id="suEmail" type="email" placeholder="Email" required>
+      <input name="pass" id="suPass" type="password" placeholder="Password" required>
+      <input name="cpass" id="suPass2" type="password" placeholder="Confirm Password" required>
+      <button type="submit">Sign Up</button>
+      <div id="suMsg" style="margin-top:10px;color:#b00020"></div>
+    </form>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+  </div>
+</body>
+
+</html>
