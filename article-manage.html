@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Articles | BlogNest Admin</title>
+  <link rel="stylesheet" href="css/admin-style.css">
+  <script src="js/admin.js"></script>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="admin-dashboard.html">Dashboard</a>
+    <a href="article-manage.html" class="active">Manage Articles</a>
+    <a href="user-manage.html">Manage Users</a>
+    <a href="#">Comments</a>
+    <a href="#">Analytics</a>
+    <a href="#">Settings</a>
+    <a href="#">Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="header">
+      <h1>Manage Articles</h1>
+        <button type="button" onclick="window.location.href='addArticle.html'">+ New Post</button>
+    </div>
+
+    <section class="table-section">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Author</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="articleTableBody">
+         
+        </tbody>
+
+      </table>
+    </section>
+
+
+    <div id="editModal" class="modal">
+  <div class="modal-content">
+    <h3>Edit Article</h3>
+    <form id="editForm">
+      <input type="hidden" id="editId" />
+      <label>Title</label>
+      <input type="text" id="editTitle" required />
+
+      <label>Category</label>
+      <input type="text" id="editCategory" required />
+
+      <label>Author</label>
+      <input type="text" id="editAuthor" required />
+
+      <label>Date</label>
+      <input type="date" id="editDate" required />
+
+      <div class="modal-buttons">
+        <button type="submit">Save Changes</button>
+        <button type="button" onclick="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+    <footer>
+      © 2025 BlogNest Admin Panel | All Rights Reserved
+    </footer>
+  </div>
+</body>
+</html>

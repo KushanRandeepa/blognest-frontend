@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Users | BlogNest Admin</title>
+  <link rel="stylesheet" href="css/admin-style.css">
+  <script src="js/admin.js"></script>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="admin-dashboard.html">Dashboard</a>
+    <a href="article-manage.html">Manage Articles</a>
+    <a href="user-manage.html" class="active">Manage Users</a>
+    <a href="#">Comments</a>
+    <a href="#">Analytics</a>
+    <a href="#">Settings</a>
+    <a href="#">Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="header">
+      <h1>Manage Users</h1>
+       <button type="button" onclick="window.location.href='addArticle.html'">+ New Post</button>
+    </div>
+
+    <section class="table-section">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#U001</td>
+            <td>Kushan</td>
+            <td>kushan@example.com</td>
+            <td>Admin</td>
+            <td>Active</td>
+            <td>
+              <button class="edit">Edit</button>
+              <button class="delete">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>#U002</td>
+            <td>Ithara</td>
+            <td>ithara@example.com</td>
+            <td>Author</td>
+            <td>Inactive</td>
+            <td>
+              <button class="edit">Edit</button>
+              <button class="delete">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      © 2025 BlogNest Admin Panel | All Rights Reserved
+    </footer>
+  </div>
+</body>
+</html>

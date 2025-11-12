@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Search & Discover - BlogNest</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/search.js"></script>
   <style>
     /* ===== Reset ===== */
     * {
@@ -73,7 +74,7 @@
     .search-section p {
       font-size: 1.2rem;
       color: #5a4a42;
-      margin-bottom: 40px;
+      margin-bottom: 10px;
     }
 
     .search-box {
@@ -161,7 +162,7 @@
       <li><a href="about.html">About</a></li>
       <li><a href="education.html">Education</a></li>
       <li><a href="entertainment.html">Entertainment</a></li>
-      <li><a href="sports.html">Sports</a></li>
+      <li><a href="sport.html">Sports</a></li>
       <li><a href="aitech.html">AI & Tech</a></li>
       <li><a href="search.html" class="search-link">🔍</a></li>
     </ul>
@@ -173,9 +174,13 @@
     <p>Find exactly what you're looking for across our collection of articles</p>
 
     <!-- Search Bar -->
-    <div class="search-box">
-      <input type="text" placeholder="Search articles, topics, authors...">
+    <div >
+      <input type="text" placeholder="Search articles, topics, authors..." class="search-box">
+      <button class="view-btn">search</button>
     </div>
+    
+    
+    </button>
   </section>
 
   <!-- ===== Filters Section ===== -->
@@ -204,8 +209,9 @@
   <!-- ===== Search Results Placeholder ===== -->
   <section class="results-section">
     <h2>SEARCH RESULTS</h2>
-    <p>Articles will appear here...</p>
-  </section>
+    <div id="article-grid" >
+      <!-- Articles will be dynamically inserted here by entertainment.js -->
+    </div>
 
   <!-- ===== Footer ===== -->
   <footer>
@@ -215,3 +221,9 @@
 </body>
 
 </html>
+
+
+
+
+
+
