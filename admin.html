@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlogNest Admin Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0b0f19;
+      color: #e0e0e0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background: #111827;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      color: #00ffff;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #e0e0e0;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover, .sidebar a.active {
+      background: linear-gradient(90deg, #00ffff, #007bff);
+      color: #111;
+      font-weight: bold;
+    }
+
+    /* Main content */
+    .main-content {
+      flex: 1;
+      background-color: #0f172a;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      color: #00ffff;
+    }
+
+    .header button {
+      background: linear-gradient(90deg, #00ffff, #007bff);
+      border: none;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .header button:hover {
+      opacity: 0.8;
+    }
+
+    /* Dashboard cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    }
+
+    .card h3 {
+      color: #00ffff;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* Charts */
+    .charts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .chart-box {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.15);
+    }
+
+    .chart-box h3 {
+      text-align: center;
+      color: #00ffff;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="#" class="active">Dashboard</a>
+    <a href="#">Manage Posts</a>
+    <a href="#">Manage Users</a>
+    <a href="#">Comments</a>
+    <a href="#">Analytics</a>
+    <a href="#">Settings</a>
+    <a href="#">Logout</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="header">
+      <h1>Dashboard Overview</h1>
+      <button>+ New Post</button>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="cards">
+      <div class="card">
+        <h3>Total Posts</h3>
+        <p></p>
+      </div>
+      <div class="card">
+        <h3>Users</h3>
+        <p></p>
+      </div>
+      <div class="card">
+        <h3>Comments</h3>
+        <p></p>
+      </div>
+      <div class="card">
+        <h3>Views</h3>
+        <p></p>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts">
+      <div class="chart-box">
+        <h3>Monthly Post Growth</h3>
+        <canvas id="postChart"></canvas>
+      </div>
+
+      <div class="chart-box">
+        <h3>User Signups (Weekly)</h3>
+        <canvas id="userChart"></canvas>
+      </div>
+    </div>
+
+    <footer>
+      © 2025 BlogNest Admin Panel | All Rights Reserved
+    </footer>
+  </div>
+
+  <script>
+    // Posts growth chart
+    const postCtx = document.getElementById('postChart').getContext('2d');
+    new Chart(postCtx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        datasets: [{
+          label: 'Posts',
+          data: [],
+          borderColor: '#00ffff',
+          backgroundColor: 'rgba(0,255,255,0.2)',
+          tension: 0.4,
+          fill: true
+        }]
+      },
+      options: {
+        plugins: { legend: { labels: { color: '#fff' } } },
+        scales: {
+          x: { ticks: { color: '#fff' } },
+          y: { ticks: { color: '#fff' } }
+        }
+      }
+    });
+
+    // User signups chart
+    const userCtx = document.getElementById('userChart').getContext('2d');
+    new Chart(userCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Signups',
+          data: [],
+          backgroundColor: 'rgba(0,255,255,0.5)',
+          borderColor: '#00ffff',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: { legend: { labels: { color: '#fff' } } },
+        scales: {
+          x: { ticks: { color: '#fff' } },
+          y: { ticks: { color: '#fff' } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
