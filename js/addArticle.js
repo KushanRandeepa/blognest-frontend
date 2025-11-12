@@ -30,6 +30,7 @@ form.addEventListener('submit', function (e) {
 
     console.log("Request Body:", requestBody);
 
+    
 
     // --- This is a simulation ---
     // In a real application, you would use fetch() here
@@ -37,10 +38,16 @@ form.addEventListener('submit', function (e) {
 
     fetch("http://localhost:8080/article/add-article", {
         method: 'POST',
-        body: JSON.stringify(articleData),
+        body: JSON.stringify(requestBody),
         headers: { "Content-Type": "application/json" }
     })
-        .then(response => response.json()) // ✅ parse JSON response
+        .then(response=>{
+             if (response.ok && response.headers.get("Content-Type")?.includes("application/json")) {
+                     return response.json();
+            } else {
+                return {}; // empty object if no JSON
+        }
+        })
         .then(data => {
             console.log("Article saved successfully:", data);
             // Show a success message

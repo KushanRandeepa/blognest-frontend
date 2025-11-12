@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Entertainment - BlogNest</title>
   <link rel="stylesheet" href="css/style.css">
-  <!-- Same CSS file as homepage -->
+  <script src="js/articles-by-category.js"></script>
+
 </head>
 
 <body>
@@ -22,7 +23,7 @@
       <li><a href="education.html">Education</a></li>
       <li><a href="entertainment.html" class="active-nav">Entertainment</a></li>
       <li><a href="aitech.html">AI & Tech</a></li>
-      <li><a href="sports.html">Sports</a></li>
+      <li><a href="sport.html">Sports</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="search.html">🔍</a></li>
       <li><a href="login.html" class="login-btn">Login</a></li>
@@ -49,51 +50,10 @@
     <h2>Latest Articles</h2>
     <p class="subtitle">Fresh takes on pop culture, cinema, and beyond.</p>
 
-    <div class="article-grid">
-      <article class="article-card">
-        <img src="./images/Gemini_Generated_Image_ydvyjmydvyjmydvy.png" alt="Film Festival" />
-        <div class="article-content">
-          <h3>Inside the 2025 Global Film Festival</h3>
-          <p>
-            Discover the most exciting movies, directors, and moments that made this year’s festival unforgettable.
-          </p>
-          <a href="#" class="read-btn">Read More</a>
-        </div>
-      </article>
-
-      <article class="article-card">
-        <img
-          src="./images/Gemini_Generated_Image_ydvyjmydvyjmydvy (1).png"
-          alt="Music Trends" />
-        <div class="article-content">
-          <h3>Music Trends: The Rise of AI Artists</h3>
-          <p>How artificial intelligence is changing the way we create and experience music in 2025.</p>
-          <a href="#" class="read-btn">Read More</a>
-        </div>
-      </article>
-
-      <article class="article-card">
-        <img
-          src="./images/Gemini_Generated_Image_ydvyjmydvyjmydvy (2).png"
-          alt="Celebrity Interview" />
-        <div class="article-content">
-          <h3>Exclusive Interview with a Global Star</h3>
-          <p>Go behind the scenes with one of the entertainment industry’s most talked-about personalities.</p>
-          <a href="#" class="read-btn">Read More</a>
-        </div>
-      </article>
-
-      <article class="article-card">
-        <img
-          src="./images/Gemini_Generated_Image_ydvyjmydvyjmydvy (3).png"
-          alt="Gaming Future" />
-        <div class="article-content">
-          <h3>The Future of Gaming: Virtual Reality and Beyond</h3>
-          <p>Explore how immersive technologies are transforming the gaming world forever.</p>
-          <a href="#" class="read-btn">Read More</a>
-        </div>
-      </article>
+    <div id="article-grid" class="article-grid">
+      <!-- Articles will be dynamically inserted here by entertainment.js -->
     </div>
+
   </section>
 
   <!-- Footer -->

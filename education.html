@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Education - BlogNest</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/articles-by-category.js"></script>
 </head>
 
 <body>
@@ -21,7 +22,7 @@
       <li><a href="about.html">About</a></li>
       <li><a href="education.html" class="active-nav">Education</a></li>
       <li><a href="entertainment.html">Entertainment</a></li>
-      <li><a href="sports.html">Sports</a></li>
+      <li><a href="sport.html">Sports</a></li>
       <li><a href="aitech.html">AI & Tech</a></li>
       <li><a href="search.html" class="search-link">🔍</a></li>
       <li><a href="login.html" class="login-btn">Login</a></li>
@@ -47,39 +48,10 @@
     <h2>Education Categories</h2>
     <p class="section-subtitle">Select a category to explore magazines and articles.</p>
 
-    <div class="category-grid">
-      <div class="category-card">
-        <img src="./images/Gemini_Generated_Image_9co42t9co42t9co4 (3).png" alt="Science Category">
-        <div class="overlay">
-          <h3>Science</h3>
-          <a href="#" class="view-btn">View Magazines</a>
-        </div>
-      </div>
-
-      <div class="category-card">
-        <img src="./images/Gemini_Generated_Image_9co42t9co42t9co4.png" alt="History Category">
-        <div class="overlay">
-          <h3>History</h3>
-          <a href="#" class="view-btn">View Magazines</a>
-        </div>
-      </div>
-
-      <div class="category-card">
-        <img src="./images/Gemini_Generated_Image_9co42t9co42t9co4 (2).png" alt="Arts Category">
-        <div class="overlay">
-          <h3>Arts & Design</h3>
-          <a href="#" class="view-btn">View Magazines</a>
-        </div>
-      </div>
-
-      <div class="category-card">
-        <img src="./images/Gemini_Generated_Image_9co42t9co42t9co4 (1).png" alt="Business Category">
-        <div class="overlay">
-          <h3>Business</h3>
-          <a href="#" class="view-btn">View Magazines</a>
-        </div>
-      </div>
+     <div id="article-grid" class="category-grid">
+      <!-- Articles will be dynamically inserted here by entertainment.js -->
     </div>
+
   </section>
 
   <!-- Footer -->

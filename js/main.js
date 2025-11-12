@@ -1,17 +1,42 @@
 document.addEventListener("DOMContentLoaded", () => {
-      console.log("Page loaded — calling API...");
-      fetchDataFromAPI();
+  console.log("Page loaded — calling API...");
+    
+  let currentPageName =  getCurrentPageName();
+  console.log("Current page name:", currentPageName);
+
+  switch(currentPageName) {
+  case 'index':
+    console.log('You are on the index page');
+    // Call function to load homepage articles
+    loadHomeArticles();
+    break;
+
+  case 'entertainment':
+    console.log('You are on the entertainment page');
+    // Call function to load entertainment articles
+    loadArticlesByCategory('entertainment');
+    break;
+
+  case 'sports':
+    console.log('You are on the sports page');
+    loadArticlesByCategory('sports');
+    break;
+
+  case 'article': // article.html
+    console.log('You are on a single article page');
+    displaySelectedArticle();
+    break;
+
+  default:
+    console.log('Unknown page');
+}
     });
 
-    // ✅ Function to call your API
-    async function fetchDataFromAPI() {
-      try {
-        const response = await fetch('http://localhost:8080/article/get-all-article');
-        const data = await response.json();
-        console.log("Data fetched from API:", data);
-        // displayPosts(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        document.getElementById("posts").innerHTML = "<p>Failed to load data</p>";
-      }
-    }
+  function getCurrentPageName() {
+    const path = window.location.pathname;              
+    const fileName = path.substring(path.lastIndexOf('/') + 1);  
+    const pageName = fileName.split('.')[0];           
+    return pageName;
+ }
+
+ 
