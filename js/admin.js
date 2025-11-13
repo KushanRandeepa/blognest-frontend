@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initArticleEditFormHandler();
   initUserEditFormHandler();
 
+  updateDashboardCounts();
+
 });
 
 function getAllArticles() {
@@ -221,6 +223,20 @@ function logout() {
     alert("Logged out!");
     window.location.replace("login.html");
   }
+}
+function updateDashboardCounts() {
+  console.log("Updating dashboard counts...");
+
+ 
+  fetch("http://localhost:8080/admin/dashboard-counts")
+    .then(response => response.json())
+    .then(data => {
+      const totalUsersEl = document.getElementById("totalUsers");
+      const totalPostsEl = document.getElementById("totalPosts");
+      if (totalUsersEl) totalUsersEl.innerText = "Total Users: "+data.totalUsers;
+      if (totalPostsEl) totalPostsEl.innerText = "Total Posts: "+data.totalArticles;
+    })
+    .catch(error => console.error("Error fetching dashboard counts:", error));
 }
 
 
