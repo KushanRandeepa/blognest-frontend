@@ -11,12 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function getAllArticles() {
 
-  fetch("http://localhost:8080/article/get-all-article") // ✅ Replace with your real endpoint
+  fetch("http://localhost:8080/article/get-all-article") 
     .then(response => response.json())
     .then(data => {
       const tableBody = document.getElementById("articleTableBody");
       if (tableBody) {
-        tableBody.innerHTML = ""; // Clear existing rows
+        tableBody.innerHTML = ""; 
 
         data.forEach(article => {
           console.log("Article:", article);
@@ -191,25 +191,19 @@ function updateUser(updatedUserData) {
     });
 }
 
-function openUserModal1(){
-  console.log("Uhhuhuhu")
-}
-function openUserModal(userId,username,email,role,password,createdAt) {
+function openUserModal(userId, username, email, role, password, createdAt) {
   document.getElementById("editUserId").value = userId;
   document.getElementById("editUsername").value = username;
   document.getElementById("editEmail").value = email;
   document.getElementById("editRole").value = role;
   document.getElementById("editPassword").value = password;
-  document.getElementById("editCreatedAt").value = createdAt ;
-  // Show modal
+  document.getElementById("editCreatedAt").value = createdAt;
   document.getElementById("editUserModal").style.display = "flex";
 }
 
 function closeUserModal() {
   document.getElementById("editUserModal").style.display = "none";
 }
-
-
 
 function deleteUser(id) {
   if (confirm("Are you sure you want to delete this user?")) {
@@ -238,4 +232,3 @@ function logout() {
 }
 
 
-            // <button class="edit" onclick="openUserModal(${user.userId}','${user.userId}','${user.username}','${user.email}','${user.role}','${user.password}','${user.createdAt}')">Edit</button>

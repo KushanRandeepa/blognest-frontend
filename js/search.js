@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Page loaded — calling API...");
 
-  searchByCatergory("education");
+  // searchByCatergory("education");
 });
 
 
@@ -60,10 +60,12 @@ function sortbyDecending(){}
 
 
 function handleSearch() {
-  const query = searchInput.value.trim();
+  const query = document.getElementById("searchInput") .value.trim();
+console.log("Searching for:", query);
 
-  fetch(`/api/articles/search?query=${encodeURIComponent(query)}`)
+
+  fetch(`http://localhost:8080/article/search?query=${encodeURIComponent(query)}`)
     .then(res => res.json())
-    .then(data => displayResults(data))
+    .then(data => displayingSearchresult(data))
     .catch(err => console.error("Search failed:", err));
 }
