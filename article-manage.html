@@ -35,7 +35,7 @@
             <th>Title</th>
             <th>Category</th>
             <th>Author</th>
-            <th>Date</th>
+            <th>Created Date</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -47,30 +47,54 @@
     </section>
 
 
-    <div id="editModal" class="modal">
+ <div id="editModal" class="modal">
   <div class="modal-content">
     <h3>Edit Article</h3>
-    <form id="editForm">
-      <input type="hidden" id="editId" />
+    <form id="editForm" enctype="multipart/form-data">
+<input type="text" id="editId" readonly />
+
       <label>Title</label>
       <input type="text" id="editTitle" required />
 
       <label>Category</label>
-      <input type="text" id="editCategory" required />
+      <select id="editCategory" required>
+        <option value="">-- Select Category --</option>
+        <option value="education">Education</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="ai-tech">AI & Tech</option>
+        <option value="sport">Sport</option>
+        <option value="other">Other</option>
+      </select>
 
       <label>Author</label>
       <input type="text" id="editAuthor" required />
 
-      <label>Date</label>
-      <input type="date" id="editDate" required />
+      <label>Content</label>
+      <textarea id="editContent" rows="5" placeholder="Write article content here..." required></textarea>
+
+      <div class="date-row">
+        <div class="date-field">
+          <label>Date</label>
+          <input type="text" id="editDate1" readonly />
+        </div>
+
+        <div class="date-field">
+          <label>Update Date</label>
+          <input type="text" id="editDate2" readonly />
+        </div>
+      </div>
+
+      <label>Image</label>
+      <input type="file" id="editImage" accept="image/*" />
 
       <div class="modal-buttons">
-        <button type="submit">Save Changes</button>
+        <button type="submit" id="saveChangesBtn">Save Changes</button>
         <button type="button" onclick="closeModal()">Cancel</button>
       </div>
     </form>
   </div>
 </div>
+
 
 
     <footer>
