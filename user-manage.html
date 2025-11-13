@@ -35,36 +35,61 @@
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
-            <th>Status</th>
+            <th>Created Date</th>
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>#U001</td>
-            <td>Kushan</td>
-            <td>kushan@example.com</td>
-            <td>Admin</td>
-            <td>Active</td>
-            <td>
-              <button class="edit">Edit</button>
-              <button class="delete">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>#U002</td>
-            <td>Ithara</td>
-            <td>ithara@example.com</td>
-            <td>Author</td>
-            <td>Inactive</td>
-            <td>
-              <button class="edit">Edit</button>
-              <button class="delete">Delete</button>
-            </td>
-          </tr>
+        <tbody id="userTableBody">
+          <!-- Users will be dynamically inserted here by admin.js -->
         </tbody>
       </table>
     </section>
+
+    <!-- ================= Edit User Modal ================= -->
+<div id="editUserModal" class="modal">
+  <div class="modal-content">
+    <h3>Edit User</h3>
+    <form id="editUserForm">
+      <!-- ID -->
+      <label>User ID</label>
+      <input type="text" id="editUserId" readonly />
+
+      <!-- Username -->
+      <label>Username</label>
+      <input type="text" id="editUsername" required />
+
+      <!-- Email -->
+      <label>Email</label>
+      <input type="email" id="editEmail" required />
+
+      <!-- Role -->
+      <label>Role</label>
+      <select id="editRole" required>
+        <option value="USER">User</option>
+        <option value="ADMIN">Admin</option>
+        
+      </select>
+
+      <div class="date-row">
+        <div class="date-field">
+          <label>Created At</label>
+          <input type="text" id="editCreatedAt" readonly />
+        </div>
+      </div>
+
+      <label>New Password (optional)</label>
+      <input type="password" id="editPassword" placeholder="Enter new password" />
+
+      <!-- Buttons -->
+      <div class="modal-buttons">
+        <button type="submit" id="saveUserChangesBtn">Save Changes</button>
+        <button type="button" onclick="closeUserModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
 
     <footer>
       © 2025 BlogNest Admin Panel | All Rights Reserved

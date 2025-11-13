@@ -254,3 +254,18 @@ footer {
   font-size: 15px;
   margin-bottom: 15px;
 }
+#editUserId[readonly] {
+  background-color:  #0f172a;;
+  color: #555;
+  cursor: not-allowed;
+}
+#editRole {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  background: #0f172a;
+  color: #fff;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
