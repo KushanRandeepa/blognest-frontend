@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   getAllArticles();
 
   const editForm = document.getElementById("editForm")
+  if(editForm){
   editForm.addEventListener("submit", function (e) {
     e.preventDefault();
     console.log("Edit form submitted");
@@ -25,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   });
+  }
+
 
 });
 
@@ -34,6 +37,7 @@ function getAllArticles(){
     .then(response => response.json())
     .then(data => {
       const tableBody = document.getElementById("articleTableBody");
+      if(tableBody){
       tableBody.innerHTML = ""; // Clear existing rows
 
       data.forEach(article => {
@@ -53,6 +57,8 @@ function getAllArticles(){
         `;
         tableBody.appendChild(row);
       });
+      }
+
     })
     .catch(error => console.error("Error fetching data:", error));
 }
