@@ -1,8 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Page loaded — calling API...");
 
+  checkLoggingstatus();
+
   const signupForm = document.getElementById("signupForm");
   const loginForm = document.getElementById("loginForm");
+
 
   if (signupForm) {
     signupForm.addEventListener("submit", async function (e) {
@@ -19,6 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
       login();
     });
   }
+
+
+
+
+
 
 });
 
@@ -91,23 +99,26 @@ async function login() {
   })
     .then(response => response.json())
     .then(data => {
-      
-
+    
       if (data.login===true) {
         loMsg.style.color = "green";
         loMsg.textContent = data.message || "Login successful!";
 
-        setTimeout(() => {
-          if (data.role === "ADMIN") {
+          localStorage.setItem("loginStatus", "true");
+          localStorage.setItem("role", data.role);       
+          localStorage.setItem("userId",data.userId);
+
+          setTimeout(() => {
+          
+            if (data.role === "ADMIN") {
             window.location.href = "admin-dashboard.html";
           } else if (data.role === "USER") {
             window.location.href = "index.html";
           }
-        }, 1000);
+        }, 400);
       document.getElementById("loginForm").reset();
       
       } else if(data.login===false){
-        console.log("login responseeeeeeeeeeeeeeeee:", data.massage);
         loMsg.style.color = "#b00020";
          loMsg.textContent = data.massage || "Username or Password Incorrect";
       }
@@ -118,4 +129,37 @@ async function login() {
       loMsg.textContent = "Login failed. Please try again.";
     });
 
+}
+
+function checkLoggingstatus() {
+  const loginStatus = localStorage.getItem("loginStatus");
+  // const role = localStorage.getItem("role");
+  // const authLink = document.getElementById("authLink");
+  const authText = document.getElementById("authText");
+
+if(authText){
+ if (loginStatus === "true") {
+    authText.textContent = "Logout";
+    authText.href = "#";
+
+    authText.addEventListener("click", () => {
+
+      const confirmLogout = confirm("Are you sure you want to logout?");
+
+      if (confirmLogout) {
+        localStorage.setItem("loginStatus", "false");
+        localStorage.removeItem("role");
+        localStorage.removeItem("username");
+        alert("You have been logged out.");
+        window.location.reload();
+         // window.location.href = "login.html";
+      }
+    });
+
+  } else {
+    authText.textContent = "Login";
+    authText.href = "login.html";
+  }
+}
+ 
 }

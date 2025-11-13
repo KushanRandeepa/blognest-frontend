@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+  checkLoggingstatus();
+  
   console.log("Page loaded — calling API...");
 
   let currentPageName = getCurrentPageName();
@@ -62,4 +65,49 @@ async function fetchDataFromAPI(category) {
     .catch(error =>
       console.error('Error fetching articles:', error));
   document.getElementById("article-grid").innerHTML = "<p>Failed to load data</p>";
+}
+
+
+function checkLoggingstatus(){
+  const loginStatus = localStorage.getItem("loginStatus");
+  const role = localStorage.getItem("role");
+
+  // if (loginStatus !== "true") {
+  //   alert("You must log in first!");
+  //   window.location.href = "login.html";
+  //   return;
+  // }
+
+
+
+
+  const authLink = document.getElementById("authLink");
+  const authText = document.getElementById("authText");
+
+
+  if (loginStatus === "true") {
+    authText.textContent = "Logout";
+    authText.href = "#"; // disable link navigation
+
+    // Add logout functionality
+   authText.addEventListener("click", () => {
+
+    const confirmLogout = confirm("Are you sure you want to logout?");
+  
+  if (confirmLogout) {
+    localStorage.setItem("loginStatus", "false");
+    localStorage.removeItem("role");
+    localStorage.removeItem("username"); 
+    alert("You have been logged out.");
+    window.location.reload();
+  }
+});
+      
+  } else {
+    authText.textContent = "Login";
+    authText.href = "login.html";
+  }
+
+
+
 }

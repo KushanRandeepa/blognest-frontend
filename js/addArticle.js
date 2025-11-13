@@ -1,3 +1,14 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const loginStatus = localStorage.getItem("loginStatus");
+  const role = localStorage.getItem("role");
+
+  // 🚫 If not logged in
+  if (loginStatus !== "true") {
+    alert("You must log in first!");
+    window.location.href = "login.html";
+    return;
+  }
+});
 
 const form = document.getElementById('articleForm');
 const messageBox = document.getElementById('messageBox');
@@ -16,9 +27,6 @@ form.addEventListener('submit', function (e) {
     const studentName = formData.get('student-name');
     const studentEmail = formData.get('student-email');
 
-
-    console.log(formData.get('article-photo'));
-
     let requestBody = {
         "title": articleTitle,
         "category": articleCategory,
@@ -29,12 +37,6 @@ form.addEventListener('submit', function (e) {
     }
 
     console.log("Request Body:", requestBody);
-
-    
-
-    // --- This is a simulation ---
-    // In a real application, you would use fetch() here
-    // to POST the formData to your backend server.
 
     fetch("http://localhost:8080/article/add-article", {
         method: 'POST',
@@ -75,10 +77,6 @@ form.addEventListener('submit', function (e) {
 
 });
 
-
-
-// A small helper function to prevent simple XSS attacks
-// when displaying user-entered names or titles in the message.
 function escapeHTML(str) {
     return str.replace(/[&<>"']/g, function (m) {
         return {

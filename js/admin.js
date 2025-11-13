@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Page loaded — calling API...");
  
@@ -111,7 +109,6 @@ function getAllArticles(){
 
   }
 
-  // 🔹 Close modal
   function closeModal() {
     document.getElementById("editModal").style.display = "none";
   }
@@ -119,3 +116,11 @@ function getAllArticles(){
   function viewArticle(id) {
     window.location.href = `article.html?id=${id}`;
   }
+
+  function logout() {
+  if (confirm("Are you sure you want to logout?")) {
+    localStorage.setItem("loginStatus", "false");
+    localStorage.removeItem("role");
+    alert("Logged out!");
+ window.location.replace("login.html");   }
+}
