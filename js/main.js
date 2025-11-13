@@ -49,7 +49,7 @@ async function signup() {
     username: username,
     password: password,
     email: email,
-    role: "USER" // default role
+    role: "EDITOR" // default role
   };
 
   fetch("http://localhost:8080/auth/signup", {
@@ -112,7 +112,7 @@ async function login() {
           
             if (data.role === "ADMIN") {
             window.location.href = "admin-dashboard.html";
-          } else if (data.role === "USER") {
+          } else if (data.role === "EDITOR" || data.role === "USER") {
             window.location.href = "index.html";
           }
         }, 400);

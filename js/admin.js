@@ -40,7 +40,6 @@ function getAllArticles() {
     })
     .catch(error => console.error("Error fetching data:", error));
 }
-
 function initArticleEditFormHandler() {
   const editForm = document.getElementById("editForm")
   if (editForm) {
@@ -80,7 +79,6 @@ function updateArticle(article) {
       });
   }
 }
-
 function deleteArticle(id) {
   if (confirm("Are you sure you want to delete this article?")) {
     fetch(`http://localhost:8080/article/delete-article/${id}`, {
@@ -109,15 +107,12 @@ function openModal(id, title, category, name, content, createdDate, updateDate) 
   document.getElementById("editModal").style.display = "flex";
 
 }
-
 function closeModal() {
   document.getElementById("editModal").style.display = "none";
 }
-
 function viewArticle(id) {
   window.location.href = `article.html?id=${id}`;
 }
-
 function getAllUsers() {
 
   fetch("http://localhost:8080/admin/get-all-users") // ✅ Replace with your real endpoint
@@ -190,7 +185,6 @@ function updateUser(updatedUserData) {
       alert("Something went wrong while updating the user.");
     });
 }
-
 function openUserModal(userId, username, email, role, password, createdAt) {
   document.getElementById("editUserId").value = userId;
   document.getElementById("editUsername").value = username;
@@ -200,11 +194,9 @@ function openUserModal(userId, username, email, role, password, createdAt) {
   document.getElementById("editCreatedAt").value = createdAt;
   document.getElementById("editUserModal").style.display = "flex";
 }
-
 function closeUserModal() {
   document.getElementById("editUserModal").style.display = "none";
 }
-
 function deleteUser(id) {
   if (confirm("Are you sure you want to delete this user?")) {
     fetch(`http://localhost:8080/admin/delete-user/${id}`, {

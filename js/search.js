@@ -5,8 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
  
 });
 
-
-
 function searchByCategory(category) {
   
     fetch(`http://localhost:8080/article/search-by-category/${category}`)
@@ -60,7 +58,6 @@ function displayingSearchresult(data){
       });
 }
 
-
 function handleSearch() {
   const query = document.getElementById("searchInput") .value.trim();
   console.log("Searching for:", query);
@@ -70,7 +67,6 @@ function handleSearch() {
     .then(data => displayingSearchresult(data))
     .catch(err => console.error("Search failed:", err));
 }
-
 
 function filterSearch() {
   const categorySelect = document.getElementById("categorySelect");

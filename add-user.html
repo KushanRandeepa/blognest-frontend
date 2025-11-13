@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New User | BlogNest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+                    },
+                    colors: {
+                        'deep-blue': '#0A192F',
+                        'dark-bg': '#121212',
+                        'text-light': '#E0FBFC',
+                        'accent-cyan': '#00FFFF',
+                        'accent-purple': '#9D4EDD',
+                        'accent-glow': 'rgba(0, 255, 255, 0.5)',
+                        'card-bg': '#172134',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-deep-blue font-sans antialiased text-text-light">
+
+    <div class="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
+
+        <div
+            class="bg-card-bg p-6 sm:p-10 rounded-xl shadow-2xl shadow-accent-cyan/20 w-full max-w-md border border-accent-cyan/30">
+
+            <header class="text-center mb-6">
+                <h2 class="text-3xl font-bold text-accent-cyan">Add New User</h2>
+                <p class="text-text-light/80 mt-1">Fill in the details below</p>
+            </header>
+
+            <form id="userForm" class="space-y-6">
+
+                <div>
+                    <label for="username" class="block text-sm font-medium text-text-light">Username</label>
+                    <input type="text" id="username" name="username" required placeholder="JohnDoe"
+                        class="mt-1 block w-full rounded-lg bg-deep-blue border border-accent-cyan/30 shadow-sm p-3 text-text-light placeholder:text-text-light/40 focus:border-accent-cyan focus:ring focus:ring-accent-cyan focus:ring-opacity-50">
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-text-light">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="john.doe@example.com"
+                        class="mt-1 block w-full rounded-lg bg-deep-blue border border-accent-cyan/30 shadow-sm p-3 text-text-light placeholder:text-text-light/40 focus:border-accent-cyan focus:ring focus:ring-accent-cyan focus:ring-opacity-50">
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-text-light">Password</label>
+                    <input type="password" id="password" name="password" required placeholder=""
+                        class="mt-1 block w-full rounded-lg bg-deep-blue border border-accent-cyan/30 shadow-sm p-3 text-text-light placeholder:text-text-light/40 focus:border-accent-cyan focus:ring focus:ring-accent-cyan focus:ring-opacity-50">
+                </div>
+
+                <div>
+                    <label for="confirmPassword" class="block text-sm font-medium text-text-light">Confirm
+                        Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="••••••••"
+                        class="mt-1 block w-full rounded-lg bg-deep-blue border border-accent-cyan/30 shadow-sm p-3 text-text-light placeholder:text-text-light/40 focus:border-accent-cyan focus:ring focus:ring-accent-cyan focus:ring-opacity-50">
+                </div>
+
+                <div>
+                    <label for="role" class="block text-sm font-medium text-text-light">Role</label>
+                    <select id="role" name="role" required
+                        class="mt-1 block w-full rounded-lg bg-deep-blue border border-accent-cyan/30 shadow-sm p-3 text-text-light focus:border-accent-cyan focus:ring focus:ring-accent-cyan focus:ring-opacity-50">
+                        <option value="">Select Role</option>
+                        <option value="USER">User</option>
+                        <option value="ADMIN">Admin</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button type="button" onclick="addNewUser()" class="w-full flex justify-center py-3 px-4 border border-transparent
+                   rounded-lg shadow-sm text-base font-bold text-deep-blue 
+                   bg-gradient-to-r from-accent-purple to-accent-cyan
+                   hover:scale-105 hover:shadow-lg hover:shadow-accent-cyan/50
+                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-cyan
+                   transition-all duration-300 ease-in-out">
+                        Add User
+                    </button>
+                </div>
+
+                <div id="userMsg" class="hidden p-4 rounded-lg text-sm text-text-light"></div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        function addNewUser() {
+            const userMsg = document.getElementById("userMsg");
+            userMsg.classList.remove('hidden');
+
+            const username = document.getElementById("username").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const role = document.getElementById("role").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (!username || !email || !role || !password || !confirmPassword) {
+                userMsg.style.color = "#b00020";
+                userMsg.textContent = "All fields are required!";
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                userMsg.style.color = "#b00020";
+                userMsg.textContent = "Passwords do not match!";
+                return;
+            }
+
+            const signupData = {
+                username: username,
+                password: password,
+                email: email,
+                role: role
+            };
+
+            fetch("http://localhost:8080/auth/signup", {
+                method: 'POST',
+                body: JSON.stringify(signupData),
+                headers: { "Content-Type": "application/json" }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Signup response:", data);
+                    if (data.success) {
+                        userMsg.style.color = "green";
+                        userMsg.textContent = data.message || "Signup successful!";
+                        document.getElementById("userForm").reset();
+                        setTimeout(() => {
+                            window.location.href = "admin-dashboard.html";
+                        }, 1500);
+                    } else {
+                        userMsg.style.color = "#b00020";
+                        userMsg.textContent = data.message || "Signup failed. Please try again.";
+                    }
+                })
+                .catch(error => {
+                    console.error("Signup error:", error);
+                    userMsg.style.color = "#b00020";
+                    userMsg.textContent = "Error connecting to server.";
+                });
+        }
+    </script>
+
+</body>
+
+</html>
