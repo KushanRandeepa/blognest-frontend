@@ -1,42 +1,61 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Page loaded — calling API...");
-    
-  let currentPageName =  getCurrentPageName();
-  console.log("Current page name:", currentPageName);
 
-  switch(currentPageName) {
-  case 'index':
-    console.log('You are on the index page');
-    // Call function to load homepage articles
-    loadHomeArticles();
-    break;
+  const signupForm = document.getElementById("signupForm");
+  signupForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    console.log("Signup form submitted");
+    signup();
+  });
 
-  case 'entertainment':
-    console.log('You are on the entertainment page');
-    // Call function to load entertainment articles
-    loadArticlesByCategory('entertainment');
-    break;
+});
 
-  case 'sports':
-    console.log('You are on the sports page');
-    loadArticlesByCategory('sports');
-    break;
 
-  case 'article': // article.html
-    console.log('You are on a single article page');
-    displaySelectedArticle();
-    break;
+async function signup() {
+  console.log("Signup  methoed");
+  const username = document.getElementById("suUser").value.trim();
+  const email = document.getElementById("suEmail").value.trim();
+  const password = document.getElementById("suPass").value.trim();
+  const confirmPassword = document.getElementById("suPass2").value.trim();
+  const suMsg = document.getElementById("suMsg");
 
-  default:
-    console.log('Unknown page');
-}
+  // Basic validation
+  if (password !== confirmPassword) {
+    suMsg.style.color = "#b00020";
+    suMsg.textContent = "Passwords do not match!";
+    return;
+  }
+
+  const signupData = {
+    username: username,
+    password: password,
+    email: email,
+    role: "USER" // default role, can change to ADMIN if needed
+  };
+
+  fetch("http://localhost:8080/auth/signup", {
+    method: 'POST',
+    body: JSON.stringify(signupData),
+    headers: { "Content-Type": "application/json" }
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Signup response:", data);
+      if (data.success) {
+        suMsg.style.color = "green";
+        suMsg.textContent = data.message || "Signup successful!";
+        document.getElementById("signupForm").reset();
+       setTimeout(() => {
+            window.location.href = "login.html";
+        }, 1000);
+      } else {
+        suMsg.style.color = "#b00020";
+        suMsg.textContent = data.message || "Signup failed. Please try again.";
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error)
+      suMsg.textContent = "Error connecting to server.";
+      console.error("Signup error:", error);
     });
-
-  function getCurrentPageName() {
-    const path = window.location.pathname;              
-    const fileName = path.substring(path.lastIndexOf('/') + 1);  
-    const pageName = fileName.split('.')[0];           
-    return pageName;
- }
-
- 
+};
