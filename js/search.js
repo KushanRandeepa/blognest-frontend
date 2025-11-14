@@ -40,7 +40,7 @@ function displayingSearchresult(data){
         articleCard.classList.add('magazine-card');
 
         articleCard.innerHTML = `
-                                 <img src="./images/Gemini_Generated_Image_izmaukizmaukizma.png" alt="${article.title}" class="magazine-img" />
+                                 <img src="http://localhost:8080/${article.imagePath}" alt="${article.title}" class="magazine-img" />
                                  <div class="magazine-content">
                                  <h3>${article.title}</h3>
                                  <p>${article.content}</p>

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   checkLoggingstatus();
-  
+
   console.log("Page loaded — calling API...");
 
   let currentPageName = getCurrentPageName();
@@ -22,7 +22,7 @@ async function fetchDataFromAPI(category) {
     .then(data => {
 
       console.log("Fetched articles:", data);
-      
+
       let contentClass = 'article-content';
       let imgClass = 'article-img';
       let cardClass = 'article-card';
@@ -42,9 +42,10 @@ async function fetchDataFromAPI(category) {
       data.forEach(article => {
         const articleCard = document.createElement('article');
         articleCard.classList.add(`${cardClass}`);
-
+        console.log("Article Image Path:", article.imagePath);
         articleCard.innerHTML = `
-                                        <img src="./images/Gemini_Generated_Image_izmaukizmaukizma.png" alt="${article.title}" class="${imgClass}" />
+
+                                        <img src="http://localhost:8080/${article.imagePath}" alt="${article.title}" class="${imgClass}" />
                                         <div class="${contentClass}">
                                         <h3>${article.title}</h3>
                                         <p>${article.content}</p>
