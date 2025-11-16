@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pending Articles | BlogNest</title>
+<script src="js/pending.js"></script>
+<style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0f172a;
+      color: #e0e0e0;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+      background: #1e293b;
+      border-bottom: 2px solid #00ffff;
+    }
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 45px;
+  margin-right: 10px;
+}
+
+.logo {
+  color: #00f5ff;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-shadow: 0 0 10px #00f5ff;
+}
+
+    
+
+    .site-title {
+      color: #00ffff;
+      font-size: 24px;
+      margin: 0;
+    }
+
+    /* Main Container */
+    .container {
+      margin: 30px auto;
+      width: 90%;
+      max-width: 1000px;
+    }
+
+    .container h2 {
+      text-align: center;
+      color: #00ffff;
+      margin-bottom: 20px;
+    }
+
+    .article-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #1e293b;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .article-table th,
+    .article-table td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #334155;
+    }
+
+    .article-table th {
+      background: #0f172a;
+      color: #00ffff;
+    }
+
+    .preview-btn,
+    .approve-btn,
+    .reject-btn {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .preview-btn {
+      background: #00ffff;
+    }
+
+    .approve-btn {
+      background: #22c55e;
+      color: white;
+    }
+
+    .reject-btn {
+      background: #ef4444;
+      color: white;
+    }
+
+    /* Modal Viewer */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.92);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #1e293b;
+      width: 80%;
+      height: 80%;
+      border-radius: 12px;
+      position: relative;
+      border: 2px solid #00ffff;
+    }
+
+    .close {
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      font-size: 28px;
+      color: #00ffff;
+      cursor: pointer;
+    }
+
+    .pdf-viewer {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+    }
+</style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <!-- Put your real logo file -->
+      <img src="./images/Untitled design (1).png" alt="BlogNest Logo" class="logo-img">
+    <h1 class="site-title">BlogNest - Pending Articles</h1>
+  </header>
+
+  <!-- Main Section -->
+  <div class="container">
+    <h2>Articles Waiting for Approval</h2>
+
+    <table class="article-table">
+      <thead>
+        <tr>
+          <th>User Name</th>
+          <th>Email</th>
+          <th>Category</th>
+          <th>Status</th>
+          <th>Preview</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+ <tbody id="articleTableBody">
+          <!-- Articles will be dynamically inserted here by admin.js -->
+        </tbody>
+      <!-- <tbody>
+
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+
+          <td>
+            <button class="preview-btn" onclick="openPreview('sample.pdf')">Preview</button>
+          </td>
+
+          <td>
+            <button class="approve-btn">Approve</button>
+            <button class="reject-btn">Reject</button>
+          </td>
+        </tr>
+
+      </tbody> -->
+    </table>
+  </div>
+
+  <!-- PDF Preview Modal -->
+  <div id="previewModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closePreview()">&times;</span>
+
+      <iframe id="pdfFrame" src="" class="pdf-viewer"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function openPreview(file) {
+      document.getElementById("previewModal").style.display = "flex";
+      document.getElementById("pdfFrame").src = file;
+    }
+
+    function closePreview() {
+      document.getElementById("previewModal").style.display = "none";
+      document.getElementById("pdfFrame").src = "";
+    }
+  </script>
+
+</body>
+</html>

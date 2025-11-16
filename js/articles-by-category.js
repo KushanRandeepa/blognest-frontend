@@ -70,11 +70,10 @@ async function fetchDataFromAPI(category) {
 
 
 function checkLoggingstatus() {
+  
   const loginStatus = localStorage.getItem("loginStatus");
-  // const role = localStorage.getItem("role");
-  // const authLink = document.getElementById("authLink");
   const authText = document.getElementById("authText");
-
+  console.log(loginStatus)
 
   if (loginStatus === "true") {
     authText.textContent = "Logout";
@@ -94,6 +93,7 @@ function checkLoggingstatus() {
     });
 
   } else {
+
     authText.textContent = "Login";
     authText.href = "login.html";
   }

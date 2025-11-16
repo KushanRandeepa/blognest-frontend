@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Page loaded — calling API...");
-  
+  checkLoggingstatus();
   filterSearch();
  
 });
@@ -91,6 +91,40 @@ function filterSearch() {
       sortbyDecending();
     }
   });
+}
+
+
+function checkLoggingstatus() {
+  
+  const loginStatus = localStorage.getItem("loginStatus");
+  const authText = document.getElementById("authText");
+  console.log(loginStatus)
+
+  if (loginStatus === "true") {
+    authText.textContent = "Logout";
+    authText.href = "#";
+
+    authText.addEventListener("click", () => {
+
+      const confirmLogout = confirm("Are you sure you want to logout?");
+
+      if (confirmLogout) {
+        localStorage.setItem("loginStatus", "false");
+        localStorage.removeItem("role");
+        localStorage.removeItem("username");
+        alert("You have been logged out.");
+        window.location.reload();
+      }
+    });
+
+  } else {
+
+    authText.textContent = "Login";
+    authText.href = "login.html";
+  }
+
+
+
 }
 
 function sortByAccending(){}

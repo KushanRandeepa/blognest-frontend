@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Page loaded — calling API...");
-
+  if (localStorage.getItem("loginStatus") !== "true") {
+    window.location.replace("login.html");
+  }
   getAllArticles();
   getAllUsers();
 
@@ -13,12 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function getAllArticles() {
 
-  fetch("http://localhost:8080/article/get-all-article") 
+  fetch("http://localhost:8080/article/get-all-article")
     .then(response => response.json())
     .then(data => {
       const tableBody = document.getElementById("articleTableBody");
       if (tableBody) {
-        tableBody.innerHTML = ""; 
+        tableBody.innerHTML = "";
 
         data.forEach(article => {
           console.log("Article:", article);
@@ -28,11 +30,12 @@ function getAllArticles() {
           <td>${article.title}</td>
           <td>${article.category}</td>
           <td>${article.name}</td>
+          <td>${article.status}</td>
           <td>${article.createdAt}</td>
           <td>
             <button class="edit" onclick="openModal(${article.id}, '${article.title}', '${article.category}','${article.name}','${article.content}', '${article.createdAt}','${article.updatedAt}')">Edit</button>
             <button class="delete" onclick="deleteArticle(${article.id})">Delete</button>
-             <button class="view" onclick="viewArticle(${article.id})">View</button>
+            <button class="view" onclick="viewArticle(${article.id})">View</button>
           </td>
         `;
           tableBody.appendChild(row);
@@ -42,6 +45,7 @@ function getAllArticles() {
     })
     .catch(error => console.error("Error fetching data:", error));
 }
+
 function initArticleEditFormHandler() {
   const editForm = document.getElementById("editForm")
   if (editForm) {
@@ -64,6 +68,8 @@ function initArticleEditFormHandler() {
     });
   }
 }
+
+
 function updateArticle(article) {
   if (confirm("Are you sure you want to update this article?")) {
     fetch(`http://localhost:8080/article/update-article`, {
@@ -81,6 +87,8 @@ function updateArticle(article) {
       });
   }
 }
+
+
 function deleteArticle(id) {
   if (confirm("Are you sure you want to delete this article?")) {
     fetch(`http://localhost:8080/article/delete-article/${id}`, {
@@ -96,6 +104,7 @@ function deleteArticle(id) {
       });
   }
 }
+
 function openModal(id, title, category, name, content, createdDate, updateDate) {
   console.log(updateDate)
   document.getElementById("editId").value = id;
@@ -107,16 +116,20 @@ function openModal(id, title, category, name, content, createdDate, updateDate) 
   document.getElementById("editDate2").value = updateDate;
   // document.getElementById("editImage").value = image;
   document.getElementById("editModal").style.display = "flex";
-
 }
+
+
 function closeModal() {
   document.getElementById("editModal").style.display = "none";
 }
+
+
 function viewArticle(id) {
   window.location.href = `article.html?id=${id}`;
 }
-function getAllUsers() {
 
+
+function getAllUsers() {
   fetch("http://localhost:8080/admin/get-all-users") // ✅ Replace with your real endpoint
     .then(response => response.json())
     .then(data => {
@@ -144,12 +157,13 @@ function getAllUsers() {
     })
     .catch(error => console.error("Error fetching data:", error));
 }
+
+
 function initUserEditFormHandler() {
   const editUserForm = document.getElementById("editUserForm");
   if (editUserForm) {
     editUserForm.addEventListener("submit", function (e) {
       e.preventDefault();
-
       const updatedUserData = {
         userId: document.getElementById("editUserId").value,
         username: document.getElementById("editUsername").value,
@@ -158,15 +172,15 @@ function initUserEditFormHandler() {
         password: document.getElementById("editPassword").value,
         // createdAt: document.getElementById("editCreatedAt").value,
         createdAt: new Date().toISOString(),  // <-- current date-time in ISO format
-
       };
-
       console.log("Updated User Data:", updatedUserData);
       updateUser(updatedUserData);
 
     });
   }
 }
+
+
 function updateUser(updatedUserData) {
   fetch(`http://localhost:8080/admin/update-user`, {
     method: "PUT",
@@ -187,6 +201,8 @@ function updateUser(updatedUserData) {
       alert("Something went wrong while updating the user.");
     });
 }
+
+
 function openUserModal(userId, username, email, role, password, createdAt) {
   document.getElementById("editUserId").value = userId;
   document.getElementById("editUsername").value = username;
@@ -196,9 +212,13 @@ function openUserModal(userId, username, email, role, password, createdAt) {
   document.getElementById("editCreatedAt").value = createdAt;
   document.getElementById("editUserModal").style.display = "flex";
 }
+
+
 function closeUserModal() {
   document.getElementById("editUserModal").style.display = "none";
 }
+
+
 function deleteUser(id) {
   if (confirm("Are you sure you want to delete this user?")) {
     fetch(`http://localhost:8080/admin/delete-user/${id}`, {
@@ -214,6 +234,8 @@ function deleteUser(id) {
       });
   }
 }
+
+
 function viewUser() { }
 
 function logout() {
@@ -221,22 +243,33 @@ function logout() {
     localStorage.setItem("loginStatus", "false");
     localStorage.removeItem("role");
     alert("Logged out!");
+
     window.location.replace("login.html");
+    setTimeout(() => {
+      window.history.pushState(null, "", window.location.href);
+      window.onpopstate = function () {
+        window.history.go(1);
+      };
+    }, 0);
   }
 }
+
+
 function updateDashboardCounts() {
   console.log("Updating dashboard counts...");
 
- 
   fetch("http://localhost:8080/admin/dashboard-counts")
     .then(response => response.json())
     .then(data => {
       const totalUsersEl = document.getElementById("totalUsers");
       const totalPostsEl = document.getElementById("totalPosts");
-      if (totalUsersEl) totalUsersEl.innerText = "Total Users: "+data.totalUsers;
-      if (totalPostsEl) totalPostsEl.innerText = "Total Posts: "+data.totalArticles;
+      if (totalUsersEl) totalUsersEl.innerText = "Total Users: " + data.totalUsers;
+      if (totalPostsEl) totalPostsEl.innerText = "Total Posts: " + data.totalArticles;
     })
     .catch(error => console.error("Error fetching dashboard counts:", error));
 }
 
 
+function navigateToEditorUI() {
+  window.location.href = "index.html";
+}
