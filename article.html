@@ -11,34 +11,81 @@
     <div id="article-details"></div>
 </body>
 
-<style>
-    .full-article {
+<style>.full-article {
   max-width: 800px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background: #1e1e1e;
-  color: #f9f9f9;
+  margin: 40px auto;
+  padding: 30px 25px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  font-family: 'Georgia', serif;
+  line-height: 1.8;
+  color: #333;
+}
+
+.article-image {
+  width: 70%;       /* Adjust width as needed */
+  height: auto;     /* Maintain aspect ratio */
+  display: block;
+  margin: 20px auto;
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation */
 }
 
-.full-article img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 1rem;
+.article-image:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Stronger shadow */
 }
 
-.full-article h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.back-btn {
+.article-category {
   display: inline-block;
-  margin-top: 1rem;
-  color: #00bcd4;
-  text-decoration: none;
+  background-color: #f1c40f;
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-transform: uppercase;
 }
+
+.article-title {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #222;
+}
+
+.article-meta {
+  font-size: 0.9em;
+  color: #666;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.article-content {
+  font-size: 1.1em;
+  text-align: justify;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+.back-button {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #3498db;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+
+.back-button:hover {
+  background-color: #2980b9;
+}
+
 
 </style>
 </html>
