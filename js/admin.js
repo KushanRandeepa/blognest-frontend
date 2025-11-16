@@ -5,10 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   getAllArticles();
   getAllUsers();
-
   initArticleEditFormHandler();
   initUserEditFormHandler();
-
   updateDashboardCounts();
 
 });
@@ -279,8 +277,6 @@ function updateDashboardCounts() {
         countEl.textContent = "0";
       }
     });
-
-
 }
 
 function navigateToEditorUI() {

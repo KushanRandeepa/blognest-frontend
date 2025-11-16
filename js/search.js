@@ -85,7 +85,7 @@ function filterSearch() {
   });
   sortSelect.addEventListener("change", () => {
     const selectedSort = sortSelect.value;
-    if (selectedSort === "Ascending") {
+    if (selectedSort === "newest") {
       sortByAccending();
     } else if (selectedSort === "Descending") {
       sortbyDecending();
@@ -127,5 +127,10 @@ function checkLoggingstatus() {
 
 }
 
-function sortByAccending(){}
+function sortByAccending(){
+  const articleGrid = document.getElementById('article-grid');
+  const articleCardsArray = Array.from(articleGrid.getElementsByClassName('magazine-card'));
+console.log(articleCardsArray.length);
+
+}
 function sortbyDecending(){}
