@@ -21,10 +21,10 @@ function getAllArticles(){
           <td>${article.email}</td>
           <td>${article.category}</td>
           <td>${article.status}</td>
-          <td><button class="preview" onclick="previewArticle(${article.id})">Preview</button><td>       
+          <td><button class="preview-btn" onclick="previewArticle(${article.id})">Preview</button><td>       
           <td>
-            <button class="approve" onclick="approveArticle(${article.id},'APPROVED')">Approve</button>
-            <button class="reject" onclick="rejectArticle(${article.id},'REJECTED')">Reject</button>
+            <button class="approve-btn" onclick="approveArticle(${article.id},'APPROVED')">Approve</button>
+            <button class="reject-btn" onclick="rejectArticle(${article.id},'REJECTED')">Reject</button>
           </td>
         `;
           tableBody.appendChild(row);

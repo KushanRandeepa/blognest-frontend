@@ -235,9 +235,6 @@ function deleteUser(id) {
   }
 }
 
-
-function viewUser() { }
-
 function logout() {
   if (confirm("Are you sure you want to logout?")) {
     localStorage.setItem("loginStatus", "false");
@@ -267,8 +264,24 @@ function updateDashboardCounts() {
       if (totalPostsEl) totalPostsEl.innerText = "Total Posts: " + data.totalArticles;
     })
     .catch(error => console.error("Error fetching dashboard counts:", error));
-}
 
+  fetch("http://localhost:8080/article/get-all-pending")
+    .then(res => res.json())
+    .then(data => {
+      const countEl = document.getElementById("pendingCount");
+      if (countEl) {
+        countEl.textContent = data.length;
+      }
+    })
+    .catch(() => {
+      const countEl = document.getElementById("pendingCount");
+      if (countEl) {
+        countEl.textContent = "0";
+      }
+    });
+
+
+}
 
 function navigateToEditorUI() {
   window.location.href = "index.html";

@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginStatus = localStorage.getItem("loginStatus");
   const role = localStorage.getItem("role");
 
-  // 🚫 If not logged in
   if (loginStatus !== "true") {
     alert("You must log in first!");
     window.location.href = "login.html";

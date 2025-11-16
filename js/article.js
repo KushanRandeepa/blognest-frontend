@@ -8,7 +8,7 @@ fetch(`http://localhost:8080/article/search-by-id/${articleId}`)
     console.log("Fetched Article:", article.imagePath);
     document.getElementById('article-details').innerHTML = `
         <article class="full-article">
-          <img src="http://localhost:8080/${article.imagePath}" alt="${article.title}" />
+        ${article.imagePath ? `<img src="http://localhost:8080/${article.imagePath}" alt="${article.title}" />` : ''}
           <h1>${article.title}</h1>
           <p>${article.content}</p>
         <a href="javascript:history.back()">← Back</a>
