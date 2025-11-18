@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function getAllArticles() {
-  fetch("http://localhost:8080/article/get-all-pending")
+  fetch("http://localhost:8080/articles/pending")
     .then(response => response.json())
     .then(data => {
       const tableBody = document.getElementById("articleTableBody");
@@ -58,10 +58,8 @@ function approveArticle(id, status) {
 
 }
 function previewArticle(id) {
-  // window.location.href = `article.html?id=${id}`;
-
   document.getElementById("previewModal").style.display = "flex";
-  fetch(`http://localhost:8080/article/search-by-id/${id}`)
+  fetch(`http://localhost:8080/articles/${id}`)
     .then(res => res.json())
     .then(article => {
       const iframe = document.getElementById('pdfFrame');

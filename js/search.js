@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function searchByCategory(category) {
   
-    fetch(`http://localhost:8080/article/search-by-category/${category}`)
+    fetch(`http://localhost:8080/articles?category=${category}`)
     .then(response => response.json())
     .then(data => {
       displayingSearchresult(data)
@@ -17,7 +17,7 @@ function searchByCategory(category) {
       document.getElementById("article-grid").innerHTML = "<p>Failed to load data</p>";
 }
 function getAll(){
-     fetch(`http://localhost:8080/article/get-all-article`)
+     fetch(`http://localhost:8080/articles`)
     .then(response => response.json())
     .then(data => {
       displayingSearchresult(data)
@@ -40,7 +40,7 @@ function displayingSearchresult(data){
         articleCard.classList.add('magazine-card');
 
         articleCard.innerHTML = `
-                                 <img src="http://localhost:8080/${article.imagePath}" alt="${article.title}" class="magazine-img" />
+                                 <img src="http://localhost:8080/${article.imagePath}" alt="image here" class="magazine-img" />
                                  <div class="magazine-content">
                                  <h3>${article.title}</h3>
                                  <p>${article.content}</p>
@@ -62,7 +62,7 @@ function handleSearch() {
   const query = document.getElementById("searchInput") .value.trim();
   console.log("Searching for:", query);
 
-  fetch(`http://localhost:8080/article/search?query=${encodeURIComponent(query)}`)
+  fetch(`http://localhost:8080/articles?query=${encodeURIComponent(query)}`)
     .then(res => res.json())
     .then(data => displayingSearchresult(data))
     .catch(err => console.error("Search failed:", err));

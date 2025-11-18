@@ -17,7 +17,7 @@ function getCurrentPageName() {
 }
 
 async function fetchDataFromAPI(category) {
-  fetch(`http://localhost:8080/article/search-by-category/${category}`)
+  fetch(`http://localhost:8080/articles?category=${category}`)
     .then(response => response.json())
     .then(data => {
 

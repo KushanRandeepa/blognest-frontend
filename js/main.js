@@ -31,9 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.replace("login.html");
       }
     }
-
-
-
   } else {
     // Not logged in
     authText.textContent = "Login";

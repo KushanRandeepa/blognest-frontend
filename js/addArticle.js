@@ -9,17 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-function escapeHTML(str) {
-    return str.replace(/[&<>"']/g, function (m) {
-        return {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#39;'
-        }[m];
-    });
-}
+
 
 const form = document.getElementById('articleForm');
 const messageBox = document.getElementById('messageBox');
@@ -40,7 +30,7 @@ form.addEventListener('submit', function (e) {
         formData.append("file", articlePhoto); // ✔ Correct key
     }
 
-    fetch("http://localhost:8080/article/add-article", {
+    fetch("http://localhost:8080/articles", {
         method: 'POST',
         body: formData, // ✔ Do NOT set Content-Type
     })
@@ -55,7 +45,7 @@ form.addEventListener('submit', function (e) {
           
           form.reset();
         window.history.back();
-        }, 2000);
+        }, 1000);
 
        
     })

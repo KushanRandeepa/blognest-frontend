@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function getAllArticles() {
 
-  fetch("http://localhost:8080/article/get-all-article")
+  fetch("http://localhost:8080/articles")
     .then(response => response.json())
     .then(data => {
       const tableBody = document.getElementById("articleTableBody");
@@ -28,10 +28,12 @@ function getAllArticles() {
           <td>${article.title}</td>
           <td>${article.category}</td>
           <td>${article.name}</td>
-          <td>${article.status}</td>
           <td>${article.createdAt}</td>
+          <td>${article.status}</td>
+          <td>${article.updatedAt}</td>
+
           <td>
-            <button class="edit" onclick="openModal(${article.id}, '${article.title}', '${article.category}','${article.name}','${article.content}', '${article.createdAt}','${article.updatedAt}')">Edit</button>
+            <button class="edit" onclick="openModal('${article.id}', '${article.title}', '${article.category}','${article.name}','${escapeHTML(article.content)}', '${article.createdAt}','${article.updatedAt}')">Edit</button>
             <button class="delete" onclick="deleteArticle(${article.id})">Delete</button>
             <button class="view" onclick="viewArticle(${article.id})">View</button>
           </td>
@@ -50,35 +52,48 @@ function initArticleEditFormHandler() {
     editForm.addEventListener("submit", function (e) {
       e.preventDefault();
       console.log("Edit form submitted");
-      const updatedArticle = {
-        id: document.getElementById("editId").value,
-        title: document.getElementById("editTitle").value,
-        category: document.getElementById("editCategory").value,
-        content: document.getElementById("editContent").value,
-        image: "update img",// optional
-        name: document.getElementById("editAuthor").value,
-        email: "0update@email", // optional
-        createdAt: document.getElementById("editDate1").value,
-        updatedAt: "",
-      };
-      console.log("Updated Article Data:", updatedArticle);
-      updateArticle(updatedArticle);
+      const updateFormData = new FormData();
+    updateFormData.append("id",document.getElementById("editId").value);
+    updateFormData.append("title", document.getElementById("editTitle").value);
+    updateFormData.append("category", document.getElementById("editCategory").value);
+    updateFormData.append("content", document.getElementById("editContent").value);
+    updateFormData.append("name",  document.getElementById("editAuthor").value);
+
+    const articlePhoto = document.getElementById('editImage').files[0];
+    if (articlePhoto) {
+        updateFormData.append("file", articlePhoto); // ✔ Correct key
+    }
+      console.log("Updated Article Data:", updateFormData);
+      updateArticle(updateFormData);
     });
   }
+}
+function escapeHTML(str) {
+    if (!str) return "";
+    return str
+        .replace(/[\n\r]+/g, "<br>")  // Convert newlines to <br>
+        .replace(/[&<>"']/g, function (m) {
+            return {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            }[m];
+        });
 }
 
 
 function updateArticle(article) {
   if (confirm("Are you sure you want to update this article?")) {
-    fetch(`http://localhost:8080/article/update-article`, {
+    fetch(`http://localhost:8080/articles`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(article)
+      body: article
     })
       .then(res => {
         if (res.ok) {
           alert("Article updated!");
-          location.reload(); // Reload table
+          location.reload(); 
         } else {
           alert("Failed to update article.");
         }
@@ -89,7 +104,7 @@ function updateArticle(article) {
 
 function deleteArticle(id) {
   if (confirm("Are you sure you want to delete this article?")) {
-    fetch(`http://localhost:8080/article/delete-article/${id}`, {
+    fetch(`http://localhost:8080/articles/${id}`, {
       method: "DELETE"
     })
       .then(res => {
@@ -112,7 +127,6 @@ function openModal(id, title, category, name, content, createdDate, updateDate) 
   document.getElementById("editContent").value = content;
   document.getElementById("editDate1").value = createdDate;
   document.getElementById("editDate2").value = updateDate;
-  // document.getElementById("editImage").value = image;
   document.getElementById("editModal").style.display = "flex";
 }
 
@@ -263,7 +277,7 @@ function updateDashboardCounts() {
     })
     .catch(error => console.error("Error fetching dashboard counts:", error));
 
-  fetch("http://localhost:8080/article/get-all-pending")
+  fetch("http://localhost:8080/articles/pending")
     .then(res => res.json())
     .then(data => {
       const countEl = document.getElementById("pendingCount");
@@ -282,3 +296,5 @@ function updateDashboardCounts() {
 function navigateToEditorUI() {
   window.location.href = "index.html";
 }
+
+
