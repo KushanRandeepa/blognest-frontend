@@ -274,8 +274,12 @@ function updateDashboardCounts() {
     .then(data => {
       const totalUsersEl = document.getElementById("totalUsers");
       const totalPostsEl = document.getElementById("totalPosts");
+      const totalCommentsEl = document.getElementById("totalComments");
+      const totalViewsEl = document.getElementById("totalViews");
       if (totalUsersEl) totalUsersEl.innerText = "Total Users: " + data.totalUsers;
       if (totalPostsEl) totalPostsEl.innerText = "Total Posts: " + data.totalArticles;
+      if(totalViewsEl) totalViewsEl.innerText = "Total Views: " + data.totalViews;
+      if (totalCommentsEl) totalCommentsEl.innerText = "Total Comments: " + data.totalComments;
     })
     .catch(error => console.error("Error fetching dashboard counts:", error));
 
