@@ -1,97 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="js/article.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/article.js" defer></script>
 </head>
 
 <body>
-    <div id="article-details"></div>
-    <div id="comments-section"></div>
-    <div><form id="comment-form">
-            <input type="text" id="comment-input" placeholder="Write a comment..." required />
-            <button type="submit">Add Comment</button>
-          </form></div>
+  <div id="article-details"></div>
+
+  <section class="comments">
+    <h3 id="comments-count">0 Comments</h3>
+
+    <div class="comment-form-container">
+      <img class="profile-pic" src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="">
+      <form id="comment-form" class="comment-form">
+        <input type="text" id="comment-input" placeholder="Add a comment..." required />
+        <button type="submit">Comment</button>
+      </form>
+    </div>
+
+    <ul id="comments-section" class="comments-list"></ul>
+  </section>
+
 </body>
 
-<style>.full-article {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 30px 25px;
-  background-color: #ffffff;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  border-radius: 12px;
-  font-family: 'Georgia', serif;
-  line-height: 1.8;
-  color: #333;
-}
+<style>
+  .article-container {
+    max-width: 900px;
+    width: 90%;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: "Inter", Arial, sans-serif;
+    color: #1a1a1a;
+    line-height: 1.75;
+  }
 
-.article-image {
-  width: 70%;       /* Adjust width as needed */
-  height: auto;     /* Maintain aspect ratio */
-  display: block;
-  margin: 20px auto;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation */
-}
+  .article-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: left;
+  }
 
-.article-image:hover {
-  transform: scale(1.05); /* Slight zoom on hover */
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Stronger shadow */
-}
+  .article-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 0.9rem;
+    color: #555;
+    margin: 10px 0 30px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 
-.article-category {
-  display: inline-block;
-  background-color: #f1c40f;
-  color: #fff;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.9em;
-  font-weight: bold;
-  margin-bottom: 15px;
-  text-transform: uppercase;
-}
+  .category-badge {
+    background: #2563eb;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
 
-.article-title {
-  font-size: 2em;
-  font-weight: bold;
-  margin-bottom: 15px;
-  text-align: center;
-  color: #222;
-}
+  .article-image-container {
+    margin: 25px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 
-.article-meta {
-  font-size: 0.9em;
-  color: #666;
-  text-align: center;
-  margin-bottom: 25px;
-}
+  .article-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
 
-.article-content {
-  font-size: 1.1em;
-  text-align: justify;
-  color: #444;
-  margin-bottom: 30px;
-}
+  .article-content {
+    font-size: 1.15rem;
+    color: #222;
+    text-align: left;
+    margin-bottom: 40px;
+    word-wrap: break-word;
+  }
 
-.back-button {
-  display: inline-block;
-  text-decoration: none;
-  background-color: #3498db;
-  color: #fff;
-  padding: 8px 20px;
-  border-radius: 25px;
-  transition: 0.3s;
-}
+  .back-button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #222;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+    font-size: 0.95rem;
+  }
 
-.back-button:hover {
-  background-color: #2980b9;
-}
+  .back-button:hover {
+    background-color: #444;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .article-title {
+      font-size: 2.1rem;
+    }
+
+    .article-content {
+      font-size: 1.05rem;
+    }
+  }
 
 
+  .comments {
+    width: 70%;
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+  }
+
+  #comments-count {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .comment-form-container {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .profile-pic {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+  }
+
+  .comment-form {
+    display: flex;
+    flex: 1;
+    gap: 10px;
+  }
+
+  #comment-input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    outline: none;
+  }
+
+  .comment-form button {
+    padding: 10px 18px;
+    background-color: #065fd4;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .comment-form button:hover {
+    background-color: #054fc0;
+  }
+
+  .comments-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+
+  .comment-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .comment-text-group {
+    background: #f7f7f7;
+    padding: 12px 16px;
+    border-radius: 12px;
+    width: 100%;
+  }
+
+  .comment-username {
+    font-weight: bold;
+    font-size: 0.95em;
+    margin-bottom: 4px;
+  }
+
+  .comment-date {
+    font-size: 0.8em;
+    color: #777;
+    margin-bottom: 8px;
+  }
+
+  .comment-text {
+    font-size: 1em;
+    color: #333;
+  }
 </style>
 
 

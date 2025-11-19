@@ -6,19 +6,20 @@ fetch(`http://localhost:8080/articles/views/${articleId}`)
   .then(article => {
     document.getElementById('article-details')
       .innerHTML = `
-                 <article class="full-article">${article.imagePath ? `
-                 <h1 class="article-title">${article.title}</h1>
-                 <img class="article-image" src="http://localhost:8080/${article.imagePath}" alt="${article.title}" />` : ''}
-                 <div class="article-category">${article.category}</div>
-                 <div class="article-meta">
-                 <span><strong>Author:</strong> ${article.name}</span> |
-                 <span><strong>Email:</strong> ${article.email}</span> |
-                 <span><strong>Date:</strong> ${new Date(article.createdAt).toISOString().split('T')[0]}</span> |
-                 </div>
-                 <p class="article-content">${article.content}</p>
-                 
-                 <a href="javascript:history.back()" class="back-button">← Back</a>
-                 </article>`;
+                  <article class="article-container">
+                  <h1 class="article-title">${article.title}</h1>
+                  ${article.imagePath ? `
+                            <div class="article-image-container">
+                            <img class="article-image" src="http://localhost:8080/${article.imagePath}" alt="${article.title}">
+                            </div>` : ''}
+                  <div class="article-meta">
+                  <span>By <strong>${article.name}</strong></span>
+                  <span>${new Date(article.createdAt).toLocaleDateString()}</span>
+                  <span class="category-badge">${article.category}</span>
+                  </div>
+                  <div class="article-content">${article.content}</div>
+                  <a href="javascript:history.back()" class="back-button">← Back</a>
+        </article>`;
 
 
     return fetch(`http://localhost:8080/editor/${articleId}`)
@@ -26,27 +27,25 @@ fetch(`http://localhost:8080/articles/views/${articleId}`)
       .then(comments => {
         const commentsSection = document.getElementById('comments-section');
         if (commentsSection && comments.length > 0) {
+          document.getElementById('comments-count').innerText = `Comments (${comments.length})`;
           comments.forEach(comment => {
-            commentsSection.innerHTML += `
-        <li class="comment-item">
-          <p><strong>${comment.comment}</strong> (${new Date(comment.time).toISOString().split('T')[0]}):</p>
-          <p>${comment.userId}</p>
-        </li>`;
-          });
-        } else {
+          commentsSection.innerHTML += `
+                    <li class="comment-item">
+                    <img class="profile-pic" src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="">
+                    <div class="comment-text-group">
+                    <p class="comment-username">${comment.userId}</p>
+                    <span class="comment-date">${new Date(comment.time).toISOString().split('T')[0]}</span>
+                    <p>${comment.comment}</p>
+                    </div>
+                    </li>`;
+            });
+        }else {
           commentsSection.innerHTML = `<p>No comments yet.</p>`;
         }
       })
       .catch(() => {
         document.getElementById('comments-section').innerHTML = `<p>Failed to load comments.</p>`;
       });
-
-
-
-
-
-
-
   })
   .catch(() => {
     document.getElementById('article-details').innerHTML = `<p>Article not found.</p>`;
@@ -78,13 +77,13 @@ commentForm.addEventListener('submit', (e) => {
       },
       body: JSON.stringify(commentsObject)
     })
-     .then(res => {
-  if (!res.ok) throw new Error('Network error');
-  return res.text(); // parse as text to avoid json parse error
-})
+      .then(res => {
+        if (!res.ok) throw new Error('Network error');
+        return res.text(); 
+      })
       .then(() => {
         alert('Comment added successfully.');
-        document.getElementById('comment-input').value = ''; // Clear input field
+        document.getElementById('comment-input').value = '';
       })
       .catch(() => {
         alert('Failed to add comment.');
