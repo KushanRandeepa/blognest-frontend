@@ -1985,3 +1985,95 @@ body {
     text-shadow: 0 0 25px #00bfff, 0 0 35px #00bfff;
   }
 }
+
+
+.user-dropdown-container {
+  position: relative;
+  display: inline-block;
+  font-family: sans-serif;
+}
+
+/* Circular User Button */
+.user-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden; /* Important for rounding the image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3498db; /* fallback */
+}
+.user-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* keeps aspect ratio and fills circle */
+  display: block;
+}
+.user-btn:hover {
+  background-color: #2980b9;
+}
+
+/* Dropdown */
+.user-dropdown {
+  position: absolute;
+  right: 0;
+  margin-top: 8px;
+  width: 180px;
+  background-color:transparent;
+  border: 1px solid #5223ec;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  overflow: hidden;
+  transform: scaleY(0);
+  transform-origin: top;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 100;
+}
+
+/* Show dropdown */
+.user-dropdown.show {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+/* User Info */
+.user-info {
+  padding: 0px 16px;
+  border-bottom: 1px solid  #2980b9;
+;
+}
+
+.user-name {
+  display: block;
+  font-weight: 600;
+  color: #f1efef;
+}
+
+.user-email {
+  display: block;
+  font-size: 12px;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Links */
+.dropdown-links a {
+  display: block;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: #fff5f5;
+  font-size: 14px;
+  transition: background 0.2s;
+  
+}
+
+.dropdown-links a:hover {
+  background-color: #2980b9;
+}

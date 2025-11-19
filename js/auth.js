@@ -94,12 +94,15 @@ async function login() {
         .then(data => {
 
             if (data.login === true) {
+                console.log("Login successful:", data);
                 loMsg.style.color = "green";
                 loMsg.textContent = data.message || "Login successful!";
 
                 localStorage.setItem("loginStatus", "true");
                 localStorage.setItem("role", data.role);
                 localStorage.setItem("userId", data.userId);
+                localStorage.setItem("username", data.username);
+                localStorage.setItem("email", data.email);
 
                 setTimeout(() => {
 

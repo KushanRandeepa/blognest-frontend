@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  checkLoggingstatus();
+  // checkLoggingstatus();
 
   console.log("Page loaded — calling API...");
 

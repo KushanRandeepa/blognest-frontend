@@ -7,6 +7,7 @@
   <title>Education - BlogNest</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/articles-by-category.js"></script>
+  <script src="js/main.js"></script>
 </head>
 
 <body>
@@ -26,6 +27,21 @@
       <li><a href="aitech.html">AI & Tech</a></li>
       <li><a href="search.html" class="search-link">🔍</a></li>
         <li id="authLink"><a href="login.html" class="login-btn" id="authText">Login</a></li>
+        <li id="user-dropdown-wrapper">
+        <div class="user-dropdown-container">
+          <button id="user-btn" class="user-btn">
+            <img src="images/team1.jpg" alt="User" class="user-img">
+          </button>
+          <div id="user-dropdown-menu" class="user-dropdown">
+            <div class="user-info"><span class="user-name" id="user-name"></span></div>
+            <div class="dropdown-links">
+              <a href="/profile">Profile</a>
+              <a href="/articles">Your Articles</a>
+              <a id="logoutBtn" href="#">Logout</a>
+            </div>
+          </div>
+        </div>
+      </li>
     </ul>
   </header>
 

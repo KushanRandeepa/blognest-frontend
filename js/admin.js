@@ -24,7 +24,8 @@ function getAllArticles() {
           console.log("Article:", article);
           const row = document.createElement("tr");
           row.innerHTML = `
-          <td>${article.id}</td>
+          <td>${data.indexOf(article) + 1}</td>
+<td>${'AR' + String(article.id).padStart(3, '0')}</td>
           <td>${article.title}</td>
           <td>${article.category}</td>
           <td>${article.name}</td>
@@ -142,7 +143,7 @@ function viewArticle(id) {
 
 
 function getAllUsers() {
-  fetch("http://localhost:8080/admin/get-all-users") // ✅ Replace with your real endpoint
+  fetch("http://localhost:8080/admin") // ✅ Replace with your real endpoint
     .then(response => response.json())
     .then(data => {
       const tableBody = document.getElementById("userTableBody");
@@ -153,6 +154,7 @@ function getAllUsers() {
           console.log("User:", user);
           const row = document.createElement("tr");
           row.innerHTML = `
+          <td>${data.indexOf(user) + 1}</td>
           <td>${user.userId}</td>
           <td>${user.username}</td>
           <td>${user.email}</td>
@@ -194,7 +196,7 @@ function initUserEditFormHandler() {
 
 
 function updateUser(updatedUserData) {
-  fetch(`http://localhost:8080/admin/update-user`, {
+  fetch(`http://localhost:8080/admin`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(updatedUserData)
@@ -233,7 +235,7 @@ function closeUserModal() {
 
 function deleteUser(id) {
   if (confirm("Are you sure you want to delete this user?")) {
-    fetch(`http://localhost:8080/admin/delete-user/${id}`, {
+    fetch(`http://localhost:8080/admin/${id}`, {
       method: "DELETE"
     })
       .then(res => {
