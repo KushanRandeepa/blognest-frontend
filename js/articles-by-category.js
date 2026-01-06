@@ -32,7 +32,7 @@ async function fetchDataFromAPI(category) {
         imgClass = 'magazine-img';
         cardClass = 'magazine-card';
       } else if (category === 'education') {
-        contentClass = 'overlay';
+        contentClass = 'magazine-content';
         cardClass = 'category-card';
       }
 
